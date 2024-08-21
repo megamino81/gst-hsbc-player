@@ -1,0 +1,23 @@
+(SW)
+gst-launch-1.0 filesrc location=/root/media/BigBuckBunny.mp4 ! qtdemux ! h264parse ! avdec_h264 ! waylandsink
+
+CPU: 8~9, gst-launch(30)
+GPU: 6~7
+
+gst-launch-1.0 filesrc location=/root/media/TearsOfSteel_720p_h265.mkv ! matroskademux ! h265parse ! avdec_h265 ! waylandsink
+
+CPU: 10, gst-launch(30)
+GPU: 6~7
+
+libde265dec
+
+
+(HW)
+gst-launch-1.0 filesrc location=/root/media/BigBuckBunny.mp4 ! qtdemux ! h264parse ! mfxh264dec ! mfxsink
+CPU: 1~2, gst-launch (5~6)
+GPU: 2~3
+
+gst-launch-1.0 filesrc location=/root/media/TearsOfSteel_720p_h265.mkv ! matroskademux ! h265parse ! mfxhevcdec ! mfxsink
+
+CPU: 1~2, gst-launch (5~6)
+GPU: 2~3
